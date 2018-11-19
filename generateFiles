@@ -35,21 +35,23 @@ mkdir ./temp
 
 for unieke_id in $(seq 1 $amount); do
 	for FILE in $dir/*; do
-		name=${FILE##*/};
-		cp  "$dir/$name" "./temp/${name}${unieke_id}";
+		filename=${FILE##*/};
+		basename=${filename%%.*};
+		suffix=${filename#*.};
+		cp  "$dir/$filename" "./temp/${basename}${unieke_id}${suffix}";
 	done
 done
 
 
-sftp [$omg@$server && echo $passw;] || echo "check your vpn connection...";
+#sftp [$omg@$server && echo $passw;] || echo "check your vpn connection...";
 
-cd $dirOnServer;
+#cd $dirOnServer;
 
-put ./temp .;
+#put ./temp .;
 
-bye;
+#bye;
 
-rm -r ./temp;
+#rm -r ./temp;
 
 echo "script terminated successfully...";
 exit;
