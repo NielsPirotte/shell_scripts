@@ -38,7 +38,8 @@ for unieke_id in $(seq 1 $amount); do
 		filename=${FILE##*/};
 		basename=${filename%%.*};
 		suffix=${filename#*.};
-		cp  "$dir/$filename" "./temp/${basename}${unieke_id}${suffix}";
+		cp  "$dir/$filename" "./temp/${basename}${unieke_id}ear
+${suffix}";
 	done
 done
 
