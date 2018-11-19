@@ -43,14 +43,7 @@ ${suffix}";
 	done
 done
 
-
-#sftp [$omg@$server && echo $passw;] || echo "check your vpn connection...";
-
-#cd $dirOnServer;
-
-#put ./temp .;
-
-#bye;
+#lftp -e "mput -O ./$dirOnServer ./temp/*; bye" -u $omg,$passw $server
 
 #rm -r ./temp;
 
