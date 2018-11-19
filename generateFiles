@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#Variabelen
+server="";
+passw="";
+omg="";
+dirOnServer="";
+
+#laad de inputparameter filename in:
+
+if [ $1 == "-h" ]; then
+	echo "example: $0 [directory] [number]";
+	echo "creates n-number of copies of all files in the directory."
+	echo "";
+	exit;
+fi
+
+if [ -d $1 ]; then
+	dir=$1;
+else
+	echo "The first parameter must be an directory...";	
+fi
+
+
+if [ $2 -gt 0 ]; then 
+	amount="$2";
+else
+	echo "";
+	echo "second argument must be a number bigger than 0...";
+fi
+
+
+#genereer een reeks van bestandsnamen
+mkdir ./temp
+
+for unieke_id in $(seq 1 $amount); do
+	for FILE in $dir/*; do
+		name=${FILE##*/};
+		cp  "$dir/$name" "./temp/${name}${unieke_id}";
+	done
+done
+
+
+sftp [$omg@$server && echo $passw;] || echo "check your vpn connection...";
+
+cd $dirOnServer;
+
+put ./temp .;
+
+bye;
+
+rm -r ./temp;
+
+echo "script terminated successfully...";
+exit;
